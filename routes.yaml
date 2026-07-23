@@ -15,8 +15,9 @@ http:
       rule: "Host(`test-nginx.kovalchik.cloud`)"
       service: test-nginx-svc
       entryPoints: ["web"]
+
     test-nginx-alt:
-      rule: "Host(`test-nginx.kovalchik.com`)"
+      rule: "Host(`test-nginx-alt.kovalchik.cloud`)"
       service: test-nginx-svc
       entryPoints: ["web"]
 
