@@ -314,7 +314,7 @@ http:
 
     portainer-svc:
       loadBalancer:
-        serversScheme: https
+        # serversScheme: https
         servers:
           - url: "https://192.168.1.25:9443"
 
@@ -360,7 +360,7 @@ http:
 
     unifi-svc:
       loadBalancer:
-        serversScheme: https
+        # serversScheme: https
         servers:
           - url: "https://192.168.1.21:30072"
 
@@ -406,7 +406,7 @@ http:
 
     omni-svc:
       loadBalancer:
-        serversScheme: https
+        # serversScheme: https
         servers:
           - url: "https://192.168.1.51:8080"
 
@@ -417,19 +417,19 @@ http:
 
     freya-svc:
       loadBalancer:
-        serversScheme: https
+        # serversScheme: https
         servers:
           - url: "https://192.168.1.23:8006"
 
     omni-api-svc:
       loadBalancer:
-        serversScheme: h2c # gRPC over HTTP/2 without TLS on the backend connection
+        # serversScheme: h2c # gRPC over HTTP/2 without TLS on the backend connection
         servers:
           - url: "h2c://192.168.1.51:8090"
 
     omni-kube-svc:
       loadBalancer:
-        serversScheme: https
+        # serversScheme: https
         servers:
           - url: "https://192.168.1.51:8100"
 
