@@ -10,6 +10,12 @@ http:
   # -------------------------------------------------------------------
 
   routers:
+    traefik-dashboard:
+        entryPoints:
+          - dashboard
+        rule: "PathPrefix(`/api`) || PathPrefix(`/dashboard`)"
+        service: api@internal # Built-in Traefik service
+
     # test-nginx.kovalchik.cloud
     test-nginx:
       rule: "Host(`test-nginx.kovalchik.cloud`)"
