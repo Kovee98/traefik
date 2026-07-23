@@ -17,7 +17,7 @@ http:
       entryPoints: ["web"]
 
     test-nginx-alt:
-      rule: "Host(`test-nginx-alt-2.kovalchik.com`)"
+      rule: "Host(`test-nginx-alt-2.kovalchik.cloud`)"
       service: test-nginx-svc
       entryPoints: ["web", "websecure"]
       tls: {}
