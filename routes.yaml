@@ -15,6 +15,10 @@ http:
       rule: "Host(`test-nginx.kovalchik.cloud`)"
       service: test-nginx-svc
       entryPoints: ["web"]
+    test-nginx:
+      rule: "Host(`test-nginx.kovalchik.com`)"
+      service: test-nginx-svc
+      entryPoints: ["web"]
 
     # ombi.kovalchik.cloud
     ombi:
