@@ -19,7 +19,8 @@ http:
     test-nginx-alt:
       rule: "Host(`test-nginx-alt-2.kovalchik.com`)"
       service: test-nginx-svc
-      entryPoints: ["web"]
+      entryPoints: ["web", "websecure"]
+      tls: {}
 
     # ombi.kovalchik.cloud
     ombi:
