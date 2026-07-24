@@ -139,6 +139,11 @@ http:
       rule: "Host(`omni-kube.kovalchik.cloud`)"
       service: omni-kube-svc
 
+    # omni-kubectl.kovalchik.cloud
+    omni-kubectl:
+      rule: "Host(`omni-kubectl.kovalchik.cloud`)"
+      service: omni-kubectl-svc
+
     # freya.kovalchik.cloud (Proxmox HTTPS Backend)
     freya:
       rule: "Host(`freya.kovalchik.cloud`)"
@@ -285,6 +290,11 @@ http:
       loadBalancer:
         servers:
           - url: "https://192.168.1.51:8100"
+
+    omni-kubectl-svc:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.1.51:8000"
 
     # Kubernetes Ingress Load Balancer (Cilium / Istio)
     k8s-svc:
