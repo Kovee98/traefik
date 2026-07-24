@@ -149,7 +149,7 @@ http:
     k8s-router:
       # rule: "HostRegexp(`^[a-zA-Z0-9-]+\\.kovalchik\\.cloud$`) || Host(`kovalchik.cloud`)"
       rule: "Host(`*.kovalchik.cloud`)"
-      # entryPoints: ["web"]
+      entryPoints: ["websecure"]
       # rule: "HostRegexp(`{subdomain:[a-zA-Z0-9-]+}.kovalchik.cloud`) || Host(`kovalchik.cloud`)"
       service: k8s-svc
       priority: 1 # Lowest priority: only triggers if no explicit router matched
