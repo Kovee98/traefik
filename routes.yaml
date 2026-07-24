@@ -147,8 +147,6 @@ http:
     # Catch-all subdomain router -> Kubernetes Ingress
     k8s-router:
       rule: "Host(`*.kovalchik.cloud`)"
-      # entryPoints: ["websecure"]
-      # entryPoints: ["web"]
       service: k8s-svc
       priority: 1 # Lowest priority: only triggers if no explicit router matched
 
@@ -290,7 +288,7 @@ http:
       loadBalancer:
         passHostHeader: true # Preserves host header (e.g., grafana.kovalchik.cloud) for Istio matching
         servers:
-          - url: "http://192.168.1.208:80"
+          - url: "https://192.168.1.208:443"
 
 
 
