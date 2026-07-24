@@ -149,7 +149,7 @@ http:
     k8s-router:
       # rule: "HostRegexp(`^[a-zA-Z0-9-]+\\.kovalchik\\.cloud$`) || Host(`kovalchik.cloud`)"
       rule: "Host(`*.kovalchik.cloud`)"
-      entryPoints: ["websecure"]
+      # entryPoints: ["websecure"]
       # rule: "HostRegexp(`{subdomain:[a-zA-Z0-9-]+}.kovalchik.cloud`) || Host(`kovalchik.cloud`)"
       service: k8s-svc
       priority: 1 # Lowest priority: only triggers if no explicit router matched
@@ -292,7 +292,7 @@ http:
       loadBalancer:
         passHostHeader: true # Preserves host header (e.g., grafana.kovalchik.cloud) for Istio matching
         servers:
-          - url: "https://192.168.1.208:443"
+          - url: "http://192.168.1.208:80"
 
 
 
