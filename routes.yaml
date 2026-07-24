@@ -316,19 +316,19 @@ http:
 
 
 
-# -------------------------------------------------------------------
-# Global Server Transport Config (Allows self-signed backend certs)
-# -------------------------------------------------------------------
-serversTransports:
-  default:
-    insecureSkipVerify: true
+  # -------------------------------------------------------------------
+  # Global Server Transport Config (Allows self-signed backend certs)
+  # -------------------------------------------------------------------
+  serversTransports:
+    default:
+      insecureSkipVerify: true
 
-  grpc-transport:
-    insecureSkipVerify: true
-    maxIdleConnsPerHost: -1  # Disables idle connection pool limits for long-lived gRPC streams
+    grpc-transport:
+      insecureSkipVerify: true
+      maxIdleConnsPerHost: -1  # Disables idle connection pool limits for long-lived gRPC streams
 
-  omni-grpc-transport:
-    insecureSkipVerify: true
-    # Ensures Traefik uses HTTP/2 for gRPC multiplexing to the backend
-    alpnProtocols:
-      - "h2"
+    omni-grpc-transport:
+      insecureSkipVerify: true
+      # Ensures Traefik uses HTTP/2 for gRPC multiplexing to the backend
+      alpnProtocols:
+        - "h2"
