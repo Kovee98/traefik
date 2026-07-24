@@ -303,7 +303,7 @@ http:
         serversTransport: default
         passHostHeader: true # Preserves host header (e.g., grafana.kovalchik.cloud) for Istio matching
         servers:
-          - url: "https://192.168.1.208:443"
+          - url: "http://192.168.1.208:80"
 
 
 
