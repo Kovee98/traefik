@@ -283,7 +283,8 @@ http:
 
     omni-api-svc:
       loadBalancer:
-        serversTransport: default
+        # serversTransport: default
+        passHostHeader: true
         servers:
           - url: "h2c://192.168.1.51:8090"
 
