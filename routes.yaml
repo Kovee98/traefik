@@ -5,7 +5,7 @@ http:
   # -------------------------------------------------------------------
   # Routers (Incoming Requests -> Services)
   #
-  # Note: Global TLS and wildcard certificates (*.kovalchik.cloud) 
+  # Note: Global TLS and wildcard certificates (*.kovalchik.cloud)
   # are enforced at the websecure entryPoint in traefik.yml.
   # -------------------------------------------------------------------
 
@@ -13,14 +13,6 @@ http:
     # test-nginx.kovalchik.cloud
     test-nginx:
       rule: "Host(`test-nginx.kovalchik.cloud`)"
-      service: test-nginx-svc
-
-    test-nginx-alt:
-      rule: "Host(`test-nginx-alt-2.kovalchik.cloud`)"
-      service: test-nginx-svc
-
-    test-nginx-alt-3:
-      rule: "Host(`test-nginx-alt-3.kovalchik.cloud`)"
       service: test-nginx-svc
 
     # ombi.kovalchik.cloud
@@ -48,11 +40,6 @@ http:
       rule: "Host(`n8n.kovalchik.cloud`)"
       service: n8n-svc
 
-    # chromium.kovalchik.cloud (HTTPS + TLS)
-    chromium:
-      rule: "Host(`chromium.kovalchik.cloud`)"
-      service: chromium-svc
-
     # navidrome.kovalchik.cloud (HTTPS + TLS)
     navidrome:
       rule: "Host(`navidrome.kovalchik.cloud`)"
@@ -62,11 +49,6 @@ http:
     truenas:
       rule: "Host(`truenas.kovalchik.cloud`)"
       service: truenas-svc
-
-    # portainer.kovalchik.cloud (HTTPS + Self-Signed Backend)
-    portainer:
-      rule: "Host(`portainer.kovalchik.cloud`)"
-      service: portainer-svc
 
     # immich.kovalchik.cloud
     immich:
@@ -142,73 +124,40 @@ http:
       rule: "Host(`syncthing.kovalchik.cloud`)"
       service: syncthing-svc
 
-    # filepizza.kovalchik.cloud
-    filepizza:
-      rule: "Host(`filepizza.kovalchik.cloud`)"
-      service: filepizza-svc
     # metube.kovalchik.cloud
     metube:
       rule: "Host(`metube.kovalchik.cloud`)"
       service: metube-svc
 
-    # keycloak.kovalchik.cloud
-    keycloak:
-      rule: "Host(`keycloak.kovalchik.cloud`)"
-      service: keycloak-svc
-
     # omni.kovalchik.cloud (HTTPS backend + gRPC fallback)
     omni-grpc:
       rule: "Host(`omni.kovalchik.cloud`) && Header(`Content-Type`, `application/grpc`)"
       service: omni-svc
-      # entryPoints: ["websecure"]
       priority: 20
-      # tls: {}
     omni:
       rule: "Host(`omni.kovalchik.cloud`)"
       service: omni-svc
-      # entryPoints: ["websecure"]
       priority: 10
-      # tls: {}
-
-    # npm.kovalchik.cloud
-    npm:
-      rule: "Host(`npm.kovalchik.cloud`)"
-      service: npm-svc
-      # entryPoints: ["websecure"]
-      # tls: {}
 
     # freya.kovalchik.cloud (Proxmox HTTPS Backend)
     freya:
       rule: "Host(`freya.kovalchik.cloud`)"
       service: freya-svc
-      # entryPoints: ["websecure"]
-      # tls: {}
 
     # omni-api.kovalchik.cloud (gRPC upstream)
     omni-api:
       rule: "Host(`omni-api.kovalchik.cloud`)"
       service: omni-api-svc
-      # entryPoints: ["websecure"]
-      # tls: {}
 
     # omni-kube.kovalchik.cloud
     omni-kube:
       rule: "Host(`omni-kube.kovalchik.cloud`)"
       service: omni-kube-svc
-      # entryPoints: ["websecure"]
-      # tls: {}
 
-    # vaultwarden.kovalchik.cloud
-    vaultwarden:
-      rule: "Host(`vaultwarden.kovalchik.cloud`)"
-      service: vaultwarden-svc
-      # entryPoints: ["web"]
-      
     # Catch-all subdomain router -> Kubernetes Ingress
     # Matches any *.kovalchik.cloud subdomain not explicitly defined above
     k8s-router:
       rule: "HostRegexp(`{subdomain:[a-zA-Z0-9-]+}.kovalchik.cloud`) || Host(`kovalchik.cloud`)"
-      # entryPoints: ["websecure"]
       service: k8s-svc
       priority: 1 # Lowest priority: only triggers if no explicit router matched
 
@@ -245,16 +194,6 @@ http:
         servers:
           - url: "http://192.168.1.25:19132"
 
-    n8n-svc:
-      loadBalancer:
-        servers:
-          - url: "http://192.168.1.21:30068"
-
-    chromium-svc:
-      loadBalancer:
-        servers:
-          - url: "http://192.168.1.25:6000"
-
     navidrome-svc:
       loadBalancer:
         servers:
@@ -264,12 +203,6 @@ http:
       loadBalancer:
         servers:
           - url: "http://192.168.1.21:80"
-
-    portainer-svc:
-      loadBalancer:
-        # serversScheme: https
-        servers:
-          - url: "https://192.168.1.25:9443"
 
     immich-svc:
       loadBalancer:
@@ -313,7 +246,6 @@ http:
 
     unifi-svc:
       loadBalancer:
-        # serversScheme: https
         servers:
           - url: "https://192.168.1.21:30072"
 
@@ -342,42 +274,23 @@ http:
         servers:
           - url: "http://192.168.1.21:20910"
 
-    filepizza-svc:
-      loadBalancer:
-        servers:
-          - url: "http://192.168.1.25:33000"
-
     metube-svc:
       loadBalancer:
         servers:
           - url: "http://192.168.1.21:30094"
 
-    keycloak-svc:
-      loadBalancer:
-        servers:
-          - url: "http://192.168.1.25:3001"
-
-    omni-svc:
-      loadBalancer:
-        # serversScheme: https
-        servers:
-          - url: "https://192.168.1.51:8080"
-
-    npm-svc:
-      loadBalancer:
-        servers:
-          - url: "http://192.168.1.25:81"
-
     freya-svc:
       loadBalancer:
-        # serversScheme: https
-        # serversTransport: default
         servers:
           - url: "https://192.168.1.23:8006"
 
+    omni-svc:
+      loadBalancer:
+        servers:
+          - url: "https://192.168.1.51:8080"
+
     omni-api-svc:
       loadBalancer:
-        # serversScheme: h2c # gRPC over HTTP/2 without TLS on the backend connection
         servers:
           - url: "h2c://192.168.1.51:8090"
 
@@ -386,11 +299,6 @@ http:
         # serversScheme: https
         servers:
           - url: "https://192.168.1.51:8100"
-
-    vaultwarden-svc:
-      loadBalancer:
-        servers:
-          - url: "http://192.168.1.52:8000"
 
     # Kubernetes Ingress Load Balancer (Cilium / Istio)
     k8s-svc:
