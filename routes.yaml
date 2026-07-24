@@ -292,7 +292,7 @@ http:
       loadBalancer:
         passHostHeader: true # Preserves host header (e.g., grafana.kovalchik.cloud) for Istio matching
         servers:
-          - url: "http://192.168.1.208"
+          - url: "http://192.168.1.208:80"
 
 
 
