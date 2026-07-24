@@ -285,14 +285,9 @@ http:
 
     omni-api-svc:
       loadBalancer:
-        serversTransport: omni-grpc-transport
-        # passHostHeader: true
+        serversTransport: grpc-transport
         servers:
-          # - url: "h2c://192.168.1.51:8090"
           - url: "https://192.168.1.51:8090"
-          # - url: "h2://192.168.1.51:8090"
-          # - url: "https://192.168.1.51:8090"
-          # - url: "grpcs://192.168.1.51:8090"
 
     omni-kube-svc:
       loadBalancer:
@@ -324,10 +319,6 @@ http:
       insecureSkipVerify: true
 
     grpc-transport:
-      insecureSkipVerify: true
-      maxIdleConnsPerHost: -1  # Disables idle connection pool limits for long-lived gRPC streams
-
-    omni-grpc-transport:
       insecureSkipVerify: true
       # Ensures Traefik uses HTTP/2 for gRPC multiplexing to the backend
       # alpnProtocols:
