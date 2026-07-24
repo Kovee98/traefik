@@ -330,5 +330,5 @@ http:
     omni-grpc-transport:
       insecureSkipVerify: true
       # Ensures Traefik uses HTTP/2 for gRPC multiplexing to the backend
-      alpnProtocols:
-        - "h2"
+      # alpnProtocols:
+      #   - "h2"
