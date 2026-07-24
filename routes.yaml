@@ -133,6 +133,7 @@ http:
     omni-api:
       rule: "Host(`omni-api.kovalchik.cloud`)"
       service: omni-api-svc
+      priority: 30
 
     # omni-kube.kovalchik.cloud
     omni-kube:
