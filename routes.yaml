@@ -3,12 +3,24 @@
 
 http:
   # -------------------------------------------------------------------
+  # Middleware
+  # -------------------------------------------------------------------
+  middlewares:
+      k8s-proto-header:
+        headers:
+          customRequestHeaders:
+            X-Forwarded-Proto: "https"
+            X-Forwarded-Port: "443"
+
+
+
+
+  # -------------------------------------------------------------------
   # Routers (Incoming Requests -> Services)
   #
   # Note: Global TLS and wildcard certificates (*.kovalchik.cloud)
   # are enforced at the websecure entryPoint in traefik.yml.
   # -------------------------------------------------------------------
-
   routers:
     # ombi.kovalchik.cloud
     ombi:
@@ -148,6 +160,8 @@ http:
     k8s-router:
       rule: "Host(`*.kovalchik.cloud`)"
       service: k8s-svc
+      middlewares:
+        - k8s-proto-header
       priority: -1 # Lowest priority: only triggers if no explicit router matched
 
 
