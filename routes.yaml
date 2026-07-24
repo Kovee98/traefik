@@ -10,11 +10,6 @@ http:
   # -------------------------------------------------------------------
 
   routers:
-    # test-nginx.kovalchik.cloud
-    test-nginx:
-      rule: "Host(`test-nginx.kovalchik.cloud`)"
-      service: test-nginx-svc
-
     # ombi.kovalchik.cloud
     ombi:
       rule: "Host(`ombi.kovalchik.cloud`)"
@@ -34,11 +29,6 @@ http:
     mc-vn-02-br:
       rule: "Host(`mc-vn-02-br.kovalchik.cloud`)"
       service: mc-vn-02-br-svc
-
-    # n8n.kovalchik.cloud
-    n8n:
-      rule: "Host(`n8n.kovalchik.cloud`)"
-      service: n8n-svc
 
     # navidrome.kovalchik.cloud (HTTPS + TLS)
     navidrome:
@@ -139,11 +129,6 @@ http:
       service: omni-svc
       priority: 10
 
-    # freya.kovalchik.cloud (Proxmox HTTPS Backend)
-    freya:
-      rule: "Host(`freya.kovalchik.cloud`)"
-      service: freya-svc
-
     # omni-api.kovalchik.cloud (gRPC upstream)
     omni-api:
       rule: "Host(`omni-api.kovalchik.cloud`)"
@@ -153,6 +138,11 @@ http:
     omni-kube:
       rule: "Host(`omni-kube.kovalchik.cloud`)"
       service: omni-kube-svc
+
+    # freya.kovalchik.cloud (Proxmox HTTPS Backend)
+    freya:
+      rule: "Host(`freya.kovalchik.cloud`)"
+      service: freya-svc
 
     # Catch-all subdomain router -> Kubernetes Ingress
     # Matches any *.kovalchik.cloud subdomain not explicitly defined above
@@ -169,11 +159,6 @@ http:
   # Services (Backend IP + Port Mapping)
   # -------------------------------------------------------------------
   services:
-    test-nginx-svc:
-      loadBalancer:
-        servers:
-          - url: "http://192.168.1.25:8888"
-
     ombi-svc:
       loadBalancer:
         servers:
