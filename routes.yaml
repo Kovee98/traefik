@@ -371,7 +371,7 @@ http:
     freya-svc:
       loadBalancer:
         # serversScheme: https
-        serversTransport: default
+        # serversTransport: default
         servers:
           - url: "https://192.168.1.23:8006"
 
