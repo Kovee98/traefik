@@ -147,8 +147,8 @@ http:
     # Catch-all subdomain router -> Kubernetes Ingress
     # Matches any *.kovalchik.cloud subdomain not explicitly defined above
     k8s-router:
-      rule: "HostRegexp(`^[a-zA-Z0-9-]+\\.kovalchik\\.cloud$`) || Host(`kovalchik.cloud`)"
-      # rule: "Host(`*.kovalchik.cloud`) || Host(`kovalchik.cloud`)"
+      # rule: "HostRegexp(`^[a-zA-Z0-9-]+\\.kovalchik\\.cloud$`) || Host(`kovalchik.cloud`)"
+      rule: "Host(`*.kovalchik.cloud`)"
       entryPoints: ["web"]
       # rule: "HostRegexp(`{subdomain:[a-zA-Z0-9-]+}.kovalchik.cloud`) || Host(`kovalchik.cloud`)"
       service: k8s-svc
