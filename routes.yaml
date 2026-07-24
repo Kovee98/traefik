@@ -160,55 +160,55 @@ http:
     omni-grpc:
       rule: "Host(`omni.kovalchik.cloud`) && Header(`Content-Type`, `application/grpc`)"
       service: omni-svc
-      entryPoints: ["websecure"]
+      # entryPoints: ["websecure"]
       priority: 20
-      tls: {}
+      # tls: {}
     omni:
       rule: "Host(`omni.kovalchik.cloud`)"
       service: omni-svc
-      entryPoints: ["websecure"]
+      # entryPoints: ["websecure"]
       priority: 10
-      tls: {}
+      # tls: {}
 
     # npm.kovalchik.cloud
     npm:
       rule: "Host(`npm.kovalchik.cloud`)"
       service: npm-svc
-      entryPoints: ["websecure"]
-      tls: {}
+      # entryPoints: ["websecure"]
+      # tls: {}
 
     # freya.kovalchik.cloud (Proxmox HTTPS Backend)
     freya:
       rule: "Host(`freya.kovalchik.cloud`)"
       service: freya-svc
-      entryPoints: ["websecure"]
-      tls: {}
+      # entryPoints: ["websecure"]
+      # tls: {}
 
     # omni-api.kovalchik.cloud (gRPC upstream)
     omni-api:
       rule: "Host(`omni-api.kovalchik.cloud`)"
       service: omni-api-svc
-      entryPoints: ["websecure"]
-      tls: {}
+      # entryPoints: ["websecure"]
+      # tls: {}
 
     # omni-kube.kovalchik.cloud
     omni-kube:
       rule: "Host(`omni-kube.kovalchik.cloud`)"
       service: omni-kube-svc
-      entryPoints: ["websecure"]
-      tls: {}
+      # entryPoints: ["websecure"]
+      # tls: {}
 
     # vaultwarden.kovalchik.cloud
     vaultwarden:
       rule: "Host(`vaultwarden.kovalchik.cloud`)"
       service: vaultwarden-svc
-      entryPoints: ["web"]
+      # entryPoints: ["web"]
       
     # Catch-all subdomain router -> Kubernetes Ingress
     # Matches any *.kovalchik.cloud subdomain not explicitly defined above
     k8s-router:
       rule: "HostRegexp(`{subdomain:[a-zA-Z0-9-]+}.kovalchik.cloud`) || Host(`kovalchik.cloud`)"
-      entryPoints: ["websecure"]
+      # entryPoints: ["websecure"]
       service: k8s-svc
       priority: 1 # Lowest priority: only triggers if no explicit router matched
 
