@@ -133,7 +133,7 @@ http:
     omni-api:
       rule: "Host(`omni-api.kovalchik.cloud`)"
       service: omni-api-svc
-      # priority: 100
+      priority: 100
 
     # omni-kube.kovalchik.cloud
     omni-kube:
@@ -279,6 +279,7 @@ http:
 
     omni-svc:
       loadBalancer:
+        serversTransport: default
         servers:
           - url: "https://192.168.1.51:8080"
 
@@ -293,6 +294,7 @@ http:
 
     omni-kube-svc:
       loadBalancer:
+        serversTransport: default
         servers:
           - url: "https://192.168.1.51:8100"
 
