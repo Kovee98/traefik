@@ -133,7 +133,7 @@ http:
     omni-api:
       rule: "Host(`omni-api.kovalchik.cloud`)"
       service: omni-api-svc
-      priority: 30
+      priority: 100
 
     # omni-kube.kovalchik.cloud
     omni-kube:
@@ -284,7 +284,7 @@ http:
 
     omni-api-svc:
       loadBalancer:
-        serversTransport: default
+        serversTransport: grpc-transport
         # passHostHeader: true
         servers:
           # - url: "h2c://192.168.1.51:8090"
@@ -318,3 +318,7 @@ http:
 serversTransports:
   default:
     insecureSkipVerify: true
+
+  grpc-transport:
+    insecureSkipVerify: true
+    maxIdleConnsPerHost: -1  # Disables idle connection pool limits for long-lived gRPC streams
